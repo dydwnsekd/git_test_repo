@@ -1,18 +1,6 @@
 #!/bin/bash
 
-<<<<<<< HEAD
 # 배열에 내가 찾는 값이 있는지 확인하는 함수
-=======
-git fetch
-git_url="git@github.com:dydwnsekd/git_test_repo.git"
-branchs=$(git branch -r 2>/dev/null | awk '{print $1}' | tr '/' ' ' | awk '{print $2}')
-
-except_branch=("HEAD" "master")
-
-#branchs=$(echo 'git branch -r 2>/dev/null | awk `{print $1}`' | tr "\n" "/")
-#echo "$branchs"
-
->>>>>>> 2313abcad33ab9d03d59cb924918d5e988c6e4dc
 in_array() {
     local needle array value
     needle="${1}"; shift; array=("${@}")
@@ -20,8 +8,7 @@ in_array() {
     echo "false"
 }
 
-<<<<<<< HEAD
-# local과 원격 동기화 코드뿐만 아니라 branch도 모두 동기화
+# local과 원격 코드, branch 동기화
 git fetch && git fetch -p && git reset --hard head && git pull
 
 # git_url 수정 필요
@@ -50,27 +37,9 @@ do
         if [ "${branch_check}" == "false" ]; then
                 
                 if [ "${dir_check}" == "true" ]; then
-                        cd $branch
-                        git fetch
-                        git reset --hard head
-                        git pull
-                        cd ..
+                        cd $branch && git fetch && git reset --hard head && git pull && cd ..
                 else
                         git clone -b $branch $git_url $branch
                 fi
-=======
-cd ..
-find . ! -name "master/" -delete
-
-for branch in $branchs
-do
-        branch_check=`in_array $branch ${except_branch[@]}`
-        if [ "${branch_check}" == "false" ]; then
-                echo "$branch"
-
-                rm -rf $branch
-                pwd
-                git clone -b $branch $git_url $branch
->>>>>>> 2313abcad33ab9d03d59cb924918d5e988c6e4dc
         fi
 done
