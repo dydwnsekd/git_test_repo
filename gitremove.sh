@@ -1,8 +1,5 @@
 #!/bin/bash
 
-path=$1
-git_url=$2
-
 # 배열에 내가 찾는 값이 있는지 확인하는 함수
 in_array() {
     local needle array value
@@ -12,10 +9,7 @@ in_array() {
 }
 
 # local과 원격 코드, branch 동기화
-git fetch && git fetch -p && git reset --hard head && git pull
-
-# git_url 수정 필요
-git_url="git@github.com:dydwnsekd/git_test_repo.git"
+git fetch && git fetch -p
 
 # git branch 목록
 branchs=$(git branch -r 2>/dev/null | awk '{print $1}' | tr '/' ' ' | awk '{print $2}')
@@ -29,20 +23,18 @@ cd ..
 branch_dirs=$(ls)
 
 # branch들 모두 확인
-for branch in $branchs
+for dir in $branch_dirs
 do
         # master을 제외한 다른 branch들에 대해서만 확인할 수 있도록 체크
-        branch_check=`in_array $branch ${except_branch[@]}`
+        branch_check=`in_array $dir ${except_branch[@]}`
         
-        # branch directory가 이미 있을 경우 true(branch directory 가 존재) / false(branch는 있는데 dirtory가 없음)
-        dir_check=`in_array $branch ${branch_dirs[@]}` 
+        # directory명이 branch중에 있으면 true 없으면 false
+        dir_check=`in_array $dir ${branchs[@]}` 
 
         if [ "${branch_check}" == "false" ]; then
                 
-                if [ "${dir_check}" == "true" ]; then
-                        cd $branch && git fetch && git reset --hard head && git pull && cd ..
-                else
-                        git clone -b $branch $git_url $branch
+                if [ "${dir_check}" == "false" ]; then
+                        rm -rf $dir
                 fi
         fi
 done
