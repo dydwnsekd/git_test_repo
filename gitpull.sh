@@ -21,7 +21,7 @@ if [ $# -ne 2 ]
 then
     parameter_check
     exit 0
-else if [ $2 -eq '' ]
+elif [ $2 -eq '' ]
 then
     echo "input git_url"
     parameter_check
