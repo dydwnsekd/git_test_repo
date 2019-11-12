@@ -21,12 +21,6 @@ if [ $# -ne 2 ]
 then
     parameter_check
     exit 0
-elif [ $2 -eq '' ]
-then
-    echo $2
-    echo "input git_url"
-    parameter_check
-    exit 0
 fi
 
 path=$1
