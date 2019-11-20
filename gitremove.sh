@@ -32,7 +32,9 @@ git fetch && git fetch -p
 # git branch 목록
 branchs=$(git branch -r 2>/dev/null | awk '{print $1}' | tr '/' ' ' | awk '{print $2}')
 
-# master은 제거
+echo $branchs >> branch_list 
+
+# 삭제할 branch목록 중 HEAD, master 제거
 except_branch=("HEAD" "master")
 
 cd ..

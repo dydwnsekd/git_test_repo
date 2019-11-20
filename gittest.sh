@@ -1,7 +1,5 @@
 #!/bin/bash
 
-ls && cd .. && ls
-
 in_array() {
     local needle array value
     needle="${1}"; shift; array=("${@}")
@@ -9,10 +7,7 @@ in_array() {
     echo "false"
 }
 
-cd ..
-branch_dirs=$(ls)
+# git branch 목록
+branchs=$(git branch -r 2>/dev/null | awk '{print $1}' | tr '/' ' ' | awk '{print $2}')
 
-for dir in $branch_dirs
-do
-        echo "$dir"
-done
+echo $branchs "\n " >> branch_list 
