@@ -10,7 +10,7 @@ in_array() {
 old_branchs=$(cat branch_list 2>/dev/null)
 
 # local과 원격 코드, branch 동기화
-#git fetch && git fetch -p && git reset --hard head && git pull
+git fetch && git fetch -p && git reset --hard head && git pull
 
 # git branch 목록
 branchs=$(git branch -r 2>/dev/null | awk '{print $1}' | tr '/' ' ' | awk '{print $2}')
