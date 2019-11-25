@@ -24,7 +24,7 @@ do
 
     echo $branch_check
     
-    if [ "{$branch_check}" == "false" ];
+    if [ "${branch_check}" == "false" ];
     then
         echo $old_branch
     fi
