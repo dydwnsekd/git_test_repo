@@ -26,6 +26,6 @@ do
     
     if [ "${branch_check}" == "false" ];
     then
-        echo $old_branch
+        rm -rf $old_branch
     fi
 done
