@@ -16,6 +16,7 @@ git fetch && git fetch -p && git reset --hard head && git pull
 branchs=$(git branch -r 2>/dev/null | awk '{print $1}' | tr '/' ' ' | awk '{print $2}')
 
 echo $branchs > branch_list 
+cd ..
 
 for old_branch in $old_branchs
 do
