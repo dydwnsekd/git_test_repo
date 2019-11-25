@@ -19,13 +19,11 @@ echo $branchs > branch_list
 
 for old_branch in $old_branchs
 do
-    echo $old_branch
     branch_check=`in_array $old_branch ${branchs[@]}`
-
-    echo $branch_check
     
     if [ "${branch_check}" == "false" ];
     then
+        echo "$old_branch"
         rm -rf $old_branch
     fi
 done
