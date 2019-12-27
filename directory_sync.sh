@@ -39,12 +39,12 @@ do
             then
                 #echo $origin_full_path
                 rm -rf $compare_full_path
-                cp $origin_full_path $compare_full_path
+                cp -r $origin_full_path $compare_full_path
             fi
         else
             #echo $origin_full_path "is new file"
             echo "not ex"
-            cp $origin_full_path $compare_full_path
+            cp -r $origin_full_path $compare_full_path
         fi
     fi
 done
