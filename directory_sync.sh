@@ -43,6 +43,7 @@ do
             fi
         else
             #echo $origin_full_path "is new file"
+            echo "not ex"
             cp $origin_full_path $compare_full_path
         fi
     fi
