@@ -21,8 +21,11 @@ cd $origin_path
 file_list=$(ls -R)
 
 for file in $file_list
-do
-    if [ "${file:(-1)}" == ":" ];
+do  
+    if [ "${file}" == ".:" ];
+    then
+        :
+    elif [ "${file:(-1)}" == ":" ];
     then
         dir_path=${file:2:${#file}-3}/
         origin_dir_path=$origin_path$dir_path
@@ -61,7 +64,10 @@ compare_dir_path=$compare_path
 
 for file in $file_list
 do
-    if [ "${file:(-1)}" == ":" ];
+    if [ "${file}" == ".:" ];
+    then
+        :
+    elif [ "${file:(-1)}" == ":" ];
     then
         dir_path=${file:2:${#file}-3}/
         origin_dir_path=$origin_path$dir_path
