@@ -73,14 +73,17 @@ do
         origin_dir_path=$origin_path$dir_path
         compare_dir_path=$compare_path$dir_path
     else
-        origin_full_path=$origin_dir_path$file
-        compare_full_path=$compare_dir_path$file
-
-        if [ -e $origin_full_path ];
+        if [ "${file:(-4)}" == ".sql" ];
         then
-            :
-        else
-            rm -rf $compare_full_path
+            origin_full_path=$origin_dir_path$file
+            compare_full_path=$compare_dir_path$file
+
+            if [ -e $origin_full_path ];
+            then
+                :
+            else
+                rm -rf $compare_full_path
+            fi
         fi
     fi
 done
